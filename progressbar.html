@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>t1</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="jquery-ui.min.css">
+</head>
+<style>
+    #divcolor{
+        width: 200px;
+        height: 200px;
+        border: 2px solid black;
+    }
+
+</style>
+<body>
+    <div id="progressbar"></div>
+    <button>number</button>
+    <div id="divcolor"></div>
+    <script>
+        $(function(){
+            $("button").click(function(){
+                var no=parseInt(prompt("pls enter a number"));
+                function changeColorDiv(){
+                    changeColor()
+                    $("#divcolor").css({"background-color":color});
+                };
+                setInterval(changeColorDiv,no)
+            });
+
+
+            var color="";
+            var colors=["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"];
+            function changeColor(){
+                color="#";
+                for(var j=0;j<6;j++){
+                    var c=Math.floor(Math.random()*16);
+                    color+=colors[c];
+                }
+            };
+
+            var i=0;
+            function myFunc(){
+                changeColor();
+                $("#progressbar").progressbar({
+                    value:i
+                });
+                if(i>100){
+                    clearInterval(setpro);
+                };
+                if(i>100){
+                    alert("oh no")
+                }
+                i++;
+                $(".ui-widget-header").css({"background-color":color});
+            };
+            var setpro=setInterval(myFunc,100);
+        });
+
+    </script>
+</body>
+</html>
